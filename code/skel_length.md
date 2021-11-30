@@ -242,7 +242,7 @@ After the distance of every pair of adjacent voxels in every branch is added to 
 
 #### Output 
 
-The aspect ratio and skeleton length of every mitochondrion are now in 2 arrays. Not it is time to combine them and output a .csv file, which is the final step of this program. 
+The aspect ratio and skeleton length of every mitochondrion are now in 2 arrays. Now it is time to combine them and output a .csv file, which is the final step of this program. 
 
 ```matlab
 aspect_ratios(:,5) = all_skel_lengths(:,2);
