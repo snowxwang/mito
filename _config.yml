@@ -30,7 +30,7 @@ plugins:
 # Aux links for the upper right navigation
 aux_links:
   "mito mapper on GitHub":
-    - "//snowxwang.github.io/mito/"
+    - "//github.com/snowxwang/mito/"
 
 
 # Enable or disable the search button that appears in the bottom right corner of every page
