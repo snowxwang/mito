@@ -1,6 +1,6 @@
 ---
 layout: default
-title: square_maker
+title: square mask maker
 parent: analysis
 #permalink: /analysis/square_maker
 nav_order: 1
