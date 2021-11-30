@@ -1,12 +1,8 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# to delete old ./_site cache folder: bundle exec jekyll clean
+# to build the site: bundle exec jekyll build
+# to build the site as production: JEKYLL_ENV=production bundle exec jekyll build
+# to view the site locally: bundle exec jekyll serve
+# to view the site in realtime: bundle exec jekyll serve --livereload
 
 # Site settings
 # These are used to personalize your new site. If you look in the HTML files,
@@ -15,7 +11,7 @@
 # in the templates via {{ site.myvariable }}.
 title: mito mapper
 # email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
+# description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
@@ -30,6 +26,25 @@ remote_theme: pmarsceill/just-the-docs
 # theme: minima
 plugins:
   - jekyll-feed
+
+# Aux links for the upper right navigation
+aux_links:
+  "mito mapper on GitHub":
+    - "//snowxwang.github.io/mito/"
+
+
+# Enable or disable the search button that appears in the bottom right corner of every page
+# Supports true or false (default)
+search.button: true
+
+# Enable or disable the site search
+# Supports true (default) or false
+search_enabled: true
+
+# Split pages into sections that can be searched individually
+# Supports 1 - 6, default: 2
+search.heading_level: 2
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
