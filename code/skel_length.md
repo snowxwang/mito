@@ -1,19 +1,20 @@
 ---
 layout: default
-title: skeleton length
+title: skeleton length (MATLAB)
 parent: analysis
 #permalink: /analysis/skel_length
 nav_order: 2
 ---
 
-## Mitochondria Skeleton Length Calculator (Matlab)
+# Mitochondria Skeleton Length Calculator
 
 This program is developed by [Tim Fan](https://github.com/Anominious).
 You can download the .m file [here](https://www.mathworks.com/matlabcentral/fileexchange/101579-mitochondria-s-skeleton-length-and-aspect-ratio-calculator) and install it as an app to access the function.
 
-### The Terms
+## The Terms
 
-#### - Bounding Box
+### - Bounding Box
+{: .text-purple-100 }
 
 A bounding box of a section is decided by its largest and smallest values in x, y, and z direction. The length, width, and height of a bounding box can be obtained by doing subtractions bewteen each pair of x, y, and z values. 
 
@@ -21,17 +22,21 @@ Here is an example of a bounding box in the total volume:
 
 <img src="images/skel_length/bbox.png" width="300"/>
 
-#### - Aspect Ratio
+### - Aspect Ratio
+{: .text-purple-100 }
 
 The [aspect ratio](https://en.wikipedia.org/wiki/Aspect_ratio) the ratio between the length and width of a shape. Since the bounding box of a section is a rectangular prism, this project takes 3 aspect ratio of each section: xy, xz, yz. 
 
 <img src="images/skel_length/aspect_ratio.png" width="450"/>
 
-#### - Skeleton
+### - Skeleton
+{: .text-purple-100 }
 
 The skeleton of sections is obtained using the [skeleton3d](https://www.mathworks.com/matlabcentral/fileexchange/43400-skeleton3d) function. The process of "skeletonization" is also known as the [Medial Axis Transform](https://homepages.inf.ed.ac.uk/rbf/HIPR2/skeleton.htm). Detailed examples of 3d skeletonization can be found [here](https://www.mathworks.com/help/images/ref/bwmorph3.html), an alternative to skeleton3d. However, neither of these two functions calculates the length of the generated skeletons. Therefore, calculating  the length of skeletons became the goal for this program.
 
-#### - Connectivity 
+### - Connectivity 
+{: .text-purple-100 }
+
 In order to calculate the length of the generated skeleton, this program calculate the distance between each adjacent voxel and add them up. In a 3d space, one [voxel](https://en.wikipedia.org/wiki/Voxel) can have 26 distinct adjacent voxels surrounding it. These 26 can be classified to 3 categories: connected via surface, via edge, and via point. The 3 categories each have different method to obtain the distance between the two voxels. 
 
 Connected surface (6 total, devided to 3 kinds):
@@ -46,15 +51,17 @@ Connected point (8 total):
 
 <img src="images/skel_length/point_connect.png" width="170"/>
 
-### The Codes
-#### - How to use
+## The Codes
+### - How to use
+{: .text-purple-100 }
 
 The function takes 7 inputs: mito_meta_file_name, pixel_length, pixel_width, page_thickness, shrinked_ratio, sample_name, and full__h5_directory. Since the h5 file is exported as 2048/2048pixels resolution, the resolution can be different from the original image volume. The "shrinked_ratio" is simply origianl image volume length/2048. The rest of the inputs are pretty self explanitory. An example would be: 
 ```matlab
 mito_skel_length_aspect_ratio_calculator('mouse_mito_meta',16,16,40,2,'mouse','C:\mito_project\mouse_h5_folder\mouse_mito_16nm.h5')
 ```
 
-#### - Getting Started 
+### - Getting Started 
+{: .text-purple-100 }
 
 First, access the cvs file and extract index and bounding box coordinates, and convert them to 2 arrays.
 ```matlab
@@ -82,9 +89,11 @@ edge_dist_c = sqrt(voxel_width^2+voxel_height^2);
 point_dist = sqrt(voxel_length^2+voxel_width^2+voxel_height^2);
 ```
 
-#### - Aspect Ratio 
+### - Aspect Ratio 
+{: .text-purple-100 }
 
-##### Calculation Function:
+#### Calculation Function:
+{: .text-green-100 }
 
 Each ratio is calculated with the larger value devided by the smaller value. 
 ```matlab
@@ -97,7 +106,9 @@ Each ratio is calculated with the larger value devided by the smaller value.
     end
 ```
 
-##### Getting Aspect Ratios
+#### Getting Aspect Ratios
+{: .text-green-100 }
+
 This program calculates the aspect ratios of the bounding boxes and not the mitochondria themselves. And the lengths, widths, and heights of the bounding boxes can be mathmetically calculated with the data provided by `mito_meta`. 
 
 Since the bounding box's side lengths are number of pixels, to calculate the true ratio of each mitochondria, the x length needed to be multiplied with `pixel_length`, as the y length with `pixel_width` and z length with `page_thickness`. After the calculation of each bounding box, the 3 aspect ratios are appended to an array as a vector. 
@@ -113,9 +124,12 @@ aspect_ratios = [aspect_ratios;
                   [mito_index(index) xy_ar xz_ar yz_ar]];
 ```
 
-#### - Skeleton Length
+### - Skeleton Length
+{: .text-purple-100 }
 
-##### Extracting the Boundary Box and Generating the Skeleton
+#### Extracting the Boundary Box and Generating the Skeleton
+{: .text-green-100 }
+
 Reading the full h5 file is way too much work. Therefore, for each mitochondrion, this program only read the part of the h5 defined by the mitochondrion's bounding box. Also due to the sheer sizes of h5 files, the image stacks are shrinked from their origin dimentions to (2048 pixel x 2048 pixel x original page number). Therefore, to find the start and distance in the h5 files, this program needs to devide the data from `mito_meta` with the `shrinked ratio`, or else the `h5read()` would have exceed limit errors. Since the h5 files are generated with a python program, whose index starts with 0, this program, a matlab program, whose index starts with 1, need to +1 to the values to eliminate 0 values.
 
 The approximate bounding box, which is a 3d array, needs to be binarized according to the greyscale index of the mitochondrion in each loop, since skeletonization can only be used in binarized arrays/images. Afterwards, the skeleton of the mitochondrion can be generated with just a single line of code. 
@@ -136,7 +150,9 @@ bi_bbox = bbox == mito_index(index);
 skel = Skeleton3D(bi_bbox);
 ```
 
-##### Slicing Branches 
+#### Slicing Branches 
+{: .text-green-100 }
+
 As mentioned before, the length of a skeleton is calculated by adding the distances between each adjacent voxels. However, how does the program determine where to start, and when to stop? Fortunately, in the [bwmorph3](https://www.mathworks.com/help/images/ref/bwmorph3.html) function, there are 2 concepts that are very helpful: branch points, and end points. Essencially, branch poitns are voxels that have 3 or more adjacent voxels who are also in the skeleton, and end points are voxels that only have 1 adjacent voxel that is in the skeleton. Here are examples of branch points and end points in 2d from [bwmorph](https://www.mathworks.com/help/images/ref/bwmorph.html?searchHighlight=bwmorph&s_tid=srchtitle_bwmorph_1):
 
 Branch Point:
@@ -182,7 +198,8 @@ end
 
 Now that the program have all the necessary component, it can start the calculation of the length of the skeleton!
 
-##### Skeleton Length Calculation
+#### Skeleton Length Calculation
+{: .text-green-100 }
 
 The program starts the calculation at the first end point in `endpoint_c`, registering the point as `start_point` and removing its coordinate from both arrays of coordinates: `skel_c` and `Epoint_c`, to avoid repetition . 
 ```matlab
@@ -241,6 +258,7 @@ if ismember(p5,skel_c,'rows') == 1
 After the distance of every pair of adjacent voxels in every branch is added to `total_distance`, it is appended to `all_skel_lengths`, and then reset to 0. 
 
 #### Output 
+{: .text-green-100 }
 
 The aspect ratio and skeleton length of every mitochondrion are now in 2 arrays. Now it is time to combine them and output a .csv file, which is the final step of this program. 
 

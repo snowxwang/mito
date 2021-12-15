@@ -6,4 +6,4 @@ layout: home
 title: home
 nav_order: 1
 ---
-this is to test if the index.md is viewable
+This site is designed to document the datasets we reconstructed and the computational tools we have developed for our mitochondria project. 
