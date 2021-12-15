@@ -7,11 +7,13 @@ nav_order: 2
 ---
 
 # Mitochondria Skeleton Length Calculator
+{: .text-purple-300 }
 
 This program is developed by [Tim Fan](https://github.com/Anominious).
 You can download the .m file [here](https://www.mathworks.com/matlabcentral/fileexchange/101579-mitochondria-s-skeleton-length-and-aspect-ratio-calculator) and install it as an app to access the function.
 
 ## The Terms
+{: .text-purple-200 }
 
 ### - Bounding Box
 {: .text-purple-100 }
@@ -52,6 +54,8 @@ Connected point (8 total):
 <img src="images/skel_length/point_connect.png" width="170"/>
 
 ## The Codes
+{: .text-purple-200 }
+
 ### - How to use
 {: .text-purple-100 }
 
