@@ -53,13 +53,13 @@ Connected point (8 total):
 
 <img src="images/skel_length/point_connect.png" width="170"/>
 
-## The Codes
+## The Code
 {: .text-purple-200 }
 
 ### - How to use
 {: .text-purple-100 }
 
-The function takes 7 inputs: mito_meta_file_name, pixel_length, pixel_width, page_thickness, shrinked_ratio, sample_name, and full__h5_directory. Since the h5 file is exported as 2048/2048pixels resolution, the resolution can be different from the original image volume. The "shrinked_ratio" is simply origianl image volume length/2048. The rest of the inputs are pretty self explanitory. An example would be: 
+The function takes 7 inputs: mito_meta_file_name, pixel_length, pixel_width, page_thickness, shrinked_ratio, sample_name, and full__h5_directory. Since the h5 file is exported as 2048/2048 pixels resolution, the resolution can be different from the original image volume. The "shrinked_ratio" is simply origianl image volume length/2048. The rest of the inputs are pretty self explanitory. An example would be: 
 ```matlab
 mito_skel_length_aspect_ratio_calculator('mouse_mito_meta',16,16,40,2,'mouse','C:\mito_project\mouse_h5_folder\mouse_mito_16nm.h5')
 ```
@@ -96,9 +96,8 @@ point_dist = sqrt(voxel_length^2+voxel_width^2+voxel_height^2);
 ### - Aspect Ratio 
 {: .text-purple-100 }
 
-#### Calculation Function
+### Calculation Function
 {: .text-green-100 }
-&nbsp;
 
 Each ratio is calculated with the larger value devided by the smaller value. 
 ```matlab
@@ -111,7 +110,7 @@ Each ratio is calculated with the larger value devided by the smaller value.
     end
 ```
 
-#### Getting Aspect Ratios
+### Getting Aspect Ratios
 {: .text-green-100 }
 
 This program calculates the aspect ratios of the bounding boxes and not the mitochondria themselves. And the lengths, widths, and heights of the bounding boxes can be mathmetically calculated with the data provided by `mito_meta`. 
@@ -132,7 +131,7 @@ aspect_ratios = [aspect_ratios;
 ### - Skeleton Length
 {: .text-purple-100 }
 
-#### Extracting the Boundary Box and Generating the Skeleton
+### Extracting the Boundary Box and Generating the Skeleton
 {: .text-green-100 }
 
 Reading the full h5 file is way too much work. Therefore, for each mitochondrion, this program only read the part of the h5 defined by the mitochondrion's bounding box. Also due to the sheer sizes of h5 files, the image stacks are shrinked from their origin dimentions to (2048 pixel x 2048 pixel x original page number). Therefore, to find the start and distance in the h5 files, this program needs to devide the data from `mito_meta` with the `shrinked ratio`, or else the `h5read()` would have exceed limit errors. Since the h5 files are generated with a python program, whose index starts with 0, this program, a matlab program, whose index starts with 1, need to +1 to the values to eliminate 0 values.
@@ -155,7 +154,7 @@ bi_bbox = bbox == mito_index(index);
 skel = Skeleton3D(bi_bbox);
 ```
 
-#### Slicing Branches 
+### Slicing Branches 
 {: .text-green-100 }
 
 As mentioned before, the length of a skeleton is calculated by adding the distances between each adjacent voxels. However, how does the program determine where to start, and when to stop? Fortunately, in the [bwmorph3](https://www.mathworks.com/help/images/ref/bwmorph3.html) function, there are 2 concepts that are very helpful: branch points, and end points. Essencially, branch poitns are voxels that have 3 or more adjacent voxels who are also in the skeleton, and end points are voxels that only have 1 adjacent voxel that is in the skeleton. Here are examples of branch points and end points in 2d from [bwmorph](https://www.mathworks.com/help/images/ref/bwmorph.html?searchHighlight=bwmorph&s_tid=srchtitle_bwmorph_1):
@@ -203,7 +202,7 @@ end
 
 Now that the program have all the necessary component, it can start the calculation of the length of the skeleton!
 
-#### Skeleton Length Calculation
+### Skeleton Length Calculation
 {: .text-green-100 }
 
 The program starts the calculation at the first end point in `endpoint_c`, registering the point as `start_point` and removing its coordinate from both arrays of coordinates: `skel_c` and `Epoint_c`, to avoid repetition . 
@@ -262,7 +261,7 @@ if ismember(p5,skel_c,'rows') == 1
 
 After the distance of every pair of adjacent voxels in every branch is added to `total_distance`, it is appended to `all_skel_lengths`, and then reset to 0. 
 
-#### Output 
+### Output 
 {: .text-green-100 }
 
 The aspect ratio and skeleton length of every mitochondrion are now in 2 arrays. Now it is time to combine them and output a .csv file, which is the final step of this program. 
@@ -275,3 +274,4 @@ final_data = cell2table(output(2:end,:),'VariableNames',output(1,:));
 file_name = append(sample_name,'_mito_aspect_ratios_skel_length.csv');
 writetable(final_data,file_name);
 ```
+&nbsp;
