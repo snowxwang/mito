@@ -75,9 +75,9 @@ bbox_array = table2array(mito_meta(:,19:24));
 ```
 Next, remove the categorical parent sections, which only serve as folders for other sections and are not actually drawn. The bounding box values for these sections are all -1.
 ```matlab
-probelm = [-1 -1 -1 -1 -1 -1];
-while ismember(probelm,bbox_array,'rows') == 1
-    rowindex = find(ismember(bbox_array,probelm,'rows')>0);
+problem = [-1 -1 -1 -1 -1 -1];
+while ismember(problem,bbox_array,'rows') == 1
+    rowindex = find(ismember(bbox_array,problem,'rows')>0);
     bbox_array(rowindex(1),:)=[];
     mito_index(rowindex(1),:)=[];
 end
@@ -96,8 +96,9 @@ point_dist = sqrt(voxel_length^2+voxel_width^2+voxel_height^2);
 ### - Aspect Ratio 
 {: .text-purple-100 }
 
-#### Calculation Function:
+#### Calculation Function
 {: .text-green-100 }
+&nbsp;
 
 Each ratio is calculated with the larger value devided by the smaller value. 
 ```matlab
