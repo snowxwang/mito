@@ -61,15 +61,18 @@ torch.cuda.is_available() # output would be True or False
 ```
 
 - if you get a 'False', try to reinstall pytorch with CUDA in different ways; also, you should go to the [official website](https://pytorch.org/get-started/locally/#windows-anaconda) for detailed instructions; solutions that worked for us:
-{: .text-red-000 }
-  - using conda:
+{: .text-red-000 }{: .px-6 }
+
+  - using conda:{: .px-6 }
   ```js
   conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
   ```
-  - using pip:
+  {: .px-6 }
+  - using pip:{: .px-6 }
   ```js
   pip3 install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio===0.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
   ```
+{: .px-6 }
 
 - now verify if nvcc is accessible from terminal:
 {: .text-green-100 }
