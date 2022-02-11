@@ -28,9 +28,9 @@ To prepare your Windows computer for the installation, first install these appli
 
 Now follow the steps below to install the package:
 
-- Open your Anaconda Prompt (Windows->)and run the follow commands in sequence:
+- Open your Anaconda Prompt (Windows->) and run the follow commands in sequence:
 
-```python
+```js
 conda create -n py3_torch python=3.8
 activate py3_torch
 conda install pytorch torchvision cudatoolkit=11.0 -c pytorch
