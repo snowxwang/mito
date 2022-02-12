@@ -92,7 +92,10 @@ pip install --editable .
 ```
 
 For installation on Linux machines, follow the instructions [here](https://connectomics.readthedocs.io/en/latest/).
- 
+
+1. Item 1
+1. Item 2
+1. Item 3
 
 ## Configure the model
 {: .text-purple-200 }
