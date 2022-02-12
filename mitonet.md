@@ -22,7 +22,7 @@ nav_order: 5
 
 To prepare your Windows computer for the installation, first install these applications:
 {: .fs-5 }
-{: .fw-500 }
+{: .fw-400 }
 
 - Install [Visual Studio](https://visualstudio.microsoft.com/downloads/)
 - Install [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
@@ -34,7 +34,7 @@ conda install -c anaconda git
 
 Now follow the steps below to install the package:
 {: .fs-5 }
-{: .fw-500 }
+{: .fw-400 }
 
 1) Open your Anaconda Prompt (click Start, then search, or select Anaconda Prompt from the menu) and run the follow commands in sequence:
 {: .text-green-100 }
@@ -93,7 +93,8 @@ pip install --editable .
 ```
 
 For installation on Linux machines, follow the instructions [here](https://connectomics.readthedocs.io/en/latest/).
-
+{: .fs-5 }
+{: .fw-400 }
 
 ## Configure the model
 {: .text-purple-200 }
