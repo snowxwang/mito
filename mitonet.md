@@ -21,6 +21,8 @@ nav_order: 5
 {: .text-purple-200 }
 
 To prepare your Windows computer for the installation, first install these applications:
+{: .fs-5 }
+{: .fw-500 }
 
 - Install [Visual Studio](https://visualstudio.microsoft.com/downloads/)
 - Install [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
@@ -31,6 +33,8 @@ conda install -c anaconda git
 ```
 
 Now follow the steps below to install the package:
+{: .fs-5 }
+{: .fw-500 }
 
 1) Open your Anaconda Prompt (click Start, then search, or select Anaconda Prompt from the menu) and run the follow commands in sequence:
 {: .text-green-100 }
