@@ -32,7 +32,7 @@ conda install -c anaconda git
 
 Now follow the steps below to install the package:
 
-1. Open your Anaconda Prompt (click Start, then search, or select Anaconda Prompt from the menu) and run the follow commands in sequence:
+- 1) Open your Anaconda Prompt (click Start, then search, or select Anaconda Prompt from the menu) and run the follow commands in sequence:
 {: .text-green-100 }
 ```js
 conda create -n py3_torch python=3.8
@@ -40,13 +40,13 @@ activate py3_torch
 conda install pytorch torchvision cudatoolkit=11.0 -c pytorch
 ```
 
-1. Check your Pytorch version (we want the version to be >1.80):
+- 2) Check your Pytorch version (we want the version to be >1.80):
 {: .text-green-100 }
 ```js
 pip3 show torch
 ```
 
-1. Check if Pytorch is installed with CUDA support:
+- 3) Check if Pytorch is installed with CUDA support:
 {: .text-green-100 }
 ```js
 activate py3_torch
@@ -59,30 +59,30 @@ torch.cuda.is_available() # output would be True or False
 
   * if you get a 'False', try to reinstall pytorch with CUDA in different ways; also, you should go to the [official website](https://pytorch.org/get-started/locally/#windows-anaconda) for detailed instructions; solutions that worked for us:
   {: .text-red-000 }
-  {: .px-6 }
+  //{: .px-6 }
   * using conda:
-  {: .px-6 }
+  //{: .px-6 }
   ```js
   conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
   ```
   {: .px-6 }
 
   * using pip:
-  {: .px-6 }
+  //{: .px-6 }
   ```js
   pip3 install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio===0.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
   ```
-  {: .px-6 }
+  //{: .px-6 }
 
 
-1. Verify if nvcc is accessible from terminal:
+- 4) Verify if nvcc is accessible from terminal:
 {: .text-green-100 }
 
 ```js
 nvcc --version
 ```
 
-1. Finally, install the Pytorch Connectomics package:
+- 5) Finally, install the Pytorch Connectomics package:
 {: .text-green-100 }
 
 ```js
@@ -92,10 +92,6 @@ pip install --editable .
 ```
 
 For installation on Linux machines, follow the instructions [here](https://connectomics.readthedocs.io/en/latest/).
-
-1. Item 1
-1. Item 2
-1. Item 3
 
 ## Configure the model
 {: .text-purple-200 }
