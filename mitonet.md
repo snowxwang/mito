@@ -28,7 +28,7 @@ To prepare your Windows computer for the installation, first install these appli
 - Install [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
 - Install [Anaconda](https://www.anaconda.com/products/individual)
 - Install Git
-```js
+```python
 conda install -c anaconda git
 ```
 
@@ -38,7 +38,7 @@ Now follow the steps below to install the package:
 
 1) Open your Anaconda Prompt (click Start, then search, or select Anaconda Prompt from the menu) and run the follow commands in sequence:
 {: .text-green-100 }
-```js
+```python
 conda create -n py3_torch python=3.8
 activate py3_torch
 conda install pytorch torchvision cudatoolkit=11.0 -c pytorch
@@ -46,13 +46,13 @@ conda install pytorch torchvision cudatoolkit=11.0 -c pytorch
 
 2) Check your Pytorch version (we want the version to be >1.80):
 {: .text-green-100 }
-```js
+```python
 pip3 show torch
 ```
 
 3) Check if Pytorch is installed with CUDA support:
 {: .text-green-100 }
-```js
+```python
 activate py3_torch
 python
 ```
@@ -66,27 +66,27 @@ torch.cuda.is_available() # output would be True or False
   
   * using conda:
   {: .text-red-000 }
-  ```js
+  ```python
   conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
   ```
 
   * using pip:
   {: .text-red-000 }
-  ```js
+  ```python
   pip3 install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio===0.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
   ```
 
 4) Verify if nvcc is accessible from terminal:
 {: .text-green-100 }
 
-```js
+```python
 nvcc --version
 ```
 
 5) Finally, install the Pytorch Connectomics package:
 {: .text-green-100 }
 
-```js
+```python
 git clone https://github.com/zudi-lin/pytorch_connectomics.git
 cd pytorch_connectomics
 pip install --editable .
