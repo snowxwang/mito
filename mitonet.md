@@ -40,13 +40,13 @@ activate py3_torch
 conda install pytorch torchvision cudatoolkit=11.0 -c pytorch
 ```
 
-2. Check your Pytorch version (we want the version to be >1.80):
+1. Check your Pytorch version (we want the version to be >1.80):
 {: .text-green-100 }
 ```js
 pip3 show torch
 ```
 
-3. Check if Pytorch is installed with CUDA support:
+1. Check if Pytorch is installed with CUDA support:
 {: .text-green-100 }
 ```js
 activate py3_torch
@@ -75,14 +75,14 @@ torch.cuda.is_available() # output would be True or False
   {: .px-6 }
 
 
-4. Verify if nvcc is accessible from terminal:
+1. Verify if nvcc is accessible from terminal:
 {: .text-green-100 }
 
 ```js
 nvcc --version
 ```
 
-5. Finally, install the Pytorch Connectomics package:
+1. Finally, install the Pytorch Connectomics package:
 {: .text-green-100 }
 
 ```js
