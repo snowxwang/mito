@@ -105,7 +105,7 @@ Before running the model, first install **wget** for Windows - a free network ut
 {: .fw-400 }
 
 - Download wget: [https://eternallybored.org/misc/wget/](https://eternallybored.org/misc/wget/)
-- Copy wget.exe to _C:\Windows\System32 folder_
+- Copy wget.exe to __C:\Windows\System32 folder__
 - In your command line, type:
 ```bash
 wget -h
