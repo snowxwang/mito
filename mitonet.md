@@ -61,7 +61,7 @@ import torch
 torch.cuda.is_available() # output would be True or False
 ```
 
-* if you get a 'False', try to reinstall pytorch with CUDA in different ways; also, you should go to the [official website](https://pytorch.org/get-started/locally/#windows-anaconda) for detailed instructions; solutions that worked for us:
+* if you get a **False**, try to reinstall pytorch with CUDA in different ways; also, you should go to the [official website](https://pytorch.org/get-started/locally/#windows-anaconda) for detailed instructions; solutions that worked for us:
 {: .fs-3 }
 {: .text-purple-000 }
   
