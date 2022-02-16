@@ -121,7 +121,8 @@ Now starts the training process:
 wget http://rhoana.rc.fas.harvard.edu/dataset/lucchi.zip
 ```
 Note: wget downloads files in the current working directory where it is run
-{: .fs-1 }
+{: .fs-3 }
+{: .text-red-100 }
 
 2) Configure the model for training:
 {: .text-green-100 }
