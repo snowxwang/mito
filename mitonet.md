@@ -100,12 +100,12 @@ For installation on Linux machines, follow the instructions [here](https://conne
 ## Semantic Segmentation
 {: .text-purple-200 }
 
-Before running the model, first install wget for Windows - a free network utility to retrieve files from the World Wide Web using HTTP and FTP. This post provides a detailed tutorial for installing wget (https://builtvisible.com/download-your-website-with-wget/). In general, follow the steps below in sequence:
+Before running the model, first install **wget** for Windows - a free network utility to retrieve files from the World Wide Web using HTTP and FTP. This post provides a detailed tutorial for installing [wget](https://builtvisible.com/download-your-website-with-wget/). In general, follow the steps below in sequence:
 {: .fs-5 }
 {: .fw-400 }
 
-- Download wget: https://eternallybored.org/misc/wget/
-- Copy wget.exe to *C:\Windows\System32 folder*
+- Download wget: [https://eternallybored.org/misc/wget/](https://eternallybored.org/misc/wget/)
+- Copy wget.exe to _C:\Windows\System32 folder_
 - In your command line, type:
 ```bash
 wget -h
