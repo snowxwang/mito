@@ -96,11 +96,53 @@ For installation on Linux machines, follow the instructions [here](https://conne
 {: .fs-5 }
 {: .fw-400 }
 
-## Configure the model
-{: .text-purple-200 }
-
 
 ## Semantic Segmentation
+{: .text-purple-200 }
+
+Before running the model, first install wget for Windows - a free network utility to retrieve files from the World Wide Web using HTTP and FTP. This post provides a detailed tutorial for installing wget (https://builtvisible.com/download-your-website-with-wget/). In general, follow the steps below in sequence:
+{: .fs-5 }
+{: .fw-400 }
+
+- Download wget: https://eternallybored.org/misc/wget/
+- Copy wget.exe to *C:\Windows\System32 folder*
+- In your command line, type:
+```bash
+wget -h
+```
+
+Now starts the training process:
+{: .fs-5 }
+{: .fw-400 }
+
+1) Download the sample dataset:
+{: .text-green-100 }
+```bash
+wget http://rhoana.rc.fas.harvard.edu/dataset/lucchi.zip
+```
+Note: wget downloads files in the current working directory where it is run
+{: .fs-1 }
+
+2) Configure the model for training:
+{: .text-green-100 }
+```bash
+# start anaconda prompt
+conda activate py3_torch
+python
+```
+```python
+import torch
+
+print(f"Is CUDA supported by this system? {torch.cuda.is_available()}") 
+# Returns True if CUDA is supported by your system, else False
+
+print(f"ID of current CUDA device: {torch.cuda.current_device()}")
+# Returns ID of current device (you need this info for configuration)
+```
+
+3) Run the script for training:
+
+## Configure the model
 {: .text-purple-200 }
 
 
