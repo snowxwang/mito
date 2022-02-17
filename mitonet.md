@@ -61,7 +61,7 @@ import torch
 torch.cuda.is_available() # output would be True or False
 ```
 
-* if you get a **False**, try to reinstall pytorch with CUDA in different ways; also, you should go to the [official website](https://pytorch.org/get-started/locally/#windows-anaconda) for detailed instructions; solutions that worked for us:
+* Note: if you get a **False**, try to reinstall pytorch with CUDA in different ways; also, you should go to the [official website](https://pytorch.org/get-started/locally/#windows-anaconda) for detailed instructions; solutions that worked for us:
 {: .fs-3 }
 {: .text-purple-000 }
   
@@ -114,7 +114,7 @@ Before running the model, first install **wget** for Windows - a free network ut
 wget -h
 ```
 
-Now starts the training process:
+Now start the training process:
 {: .fs-5 }
 {: .fw-400 }
 
@@ -123,7 +123,7 @@ Now starts the training process:
 ```bash
 wget http://rhoana.rc.fas.harvard.edu/dataset/lucchi.zip
 ```
-Note: wget downloads files in the current working directory where it is run
+Note: **wget** downloads files in the current working directory where it is run
 {: .fs-3 }
 {: .text-red-100 }
 
