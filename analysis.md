@@ -6,6 +6,6 @@ nav_order: 6
 has_children: true
 ---
 
-This should be the last tab
+This will be main tab about the analysis
 
 ---
