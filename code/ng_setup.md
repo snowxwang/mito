@@ -130,45 +130,33 @@ import h5py
 import os
 ```
 ```python
-ip = 'localhost'  #or public IP of the machine for sharable display
-port = 9999       #change to an unused port number
+ip = 'localhost'  # or public IP of the machine for sharable display
+port = 9999       # change to an unused port number
 neuroglancer.set_server_bind_address(bind_address=ip, bind_port=port)
 viewer=neuroglancer.Viewer()
 ```
 ```python
-# locate the folder where the current script is being run
-script_dir = os.path.abspath('')
-
-# put your image folder in the script path and specify the name of the folder
-sample_name = 'jwr_pyr87' # change here
+script_dir = os.path.abspath('') # locate the folder where the current script is being run
+sample_name = 'jwr_pyr87' # put your image folder in the script path and specify the name of the folder
 img_dir = os.path.join(script_dir, sample_name)
-
 img_idx = sorted(next(os.walk(img_dir))[2])
 num_of_img = len(img_idx)
-
-# specify the exported image size
-sample_height = 832 # change here
-sample_length = 832 # change here
+sample_height = 832 # specify the exported image size in x
+sample_length = 832 # specify the exported image size in y
 img_shape = (sample_height, sample_length)
-
-# allocate memory
-img_stack = np.zeros((len(img_idx),) + img_shape, dtype=np.int64)
+img_stack = np.zeros((len(img_idx),) + img_shape, dtype=np.int64) # allocate memory
 print(img_stack.shape)
-
-# read all the images exported from VAST into a single image stack
 i = 0
 for i in range(num_of_img):
     img_stack[i] = imread(img_dir + "/" + img_idx[i])
-    i += 1
-    
-print(img_stack.shape)
+    i += 1   
+print(img_stack.shape) # read all the images exported from VAST into a single image stack
 ```
 ```python
-# set the x,y,z resolutions for neuroglacer 
 res = neuroglancer.CoordinateSpace(
     names=['z', 'y', 'x'],
     units=['nm', 'nm', 'nm'],
-    scales=[120, 256, 128])
+    scales=[120, 256, 128]) # set the x,y,z resolutions for neuroglacer 
 ```
 ```python
 def ngLayer(data, res, oo=[0,0,0], tt='segmentation'):
