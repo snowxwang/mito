@@ -204,4 +204,4 @@ print(viewer)
 np.unique(img_stack)
 ```
 
-- Please feel free to download the sample Jupyter [notebook]() or Colab [notebook]() whichever is convenient for you.
+- Please feel free to download the sample Jupyter [notebook]() or Colab [notebook](https://colab.research.google.com/drive/1OP3VSKOao0Wa6Z4RPGc2r38PM0oemzgt?usp=sharing) whichever is convenient for you.
