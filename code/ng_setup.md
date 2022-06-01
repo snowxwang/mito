@@ -140,6 +140,7 @@ import h5py
 import os
 ```
 
+- Set up the local server:
 ```python
 ip = 'localhost'  # or public IP of the machine for sharable display
 port = 9999       # change to an unused port number
@@ -147,6 +148,7 @@ neuroglancer.set_server_bind_address(bind_address=ip, bind_port=port)
 viewer=neuroglancer.Viewer()
 ```
 
+- If your reconstruction has been exported as an image stack, this code loads your entire image folder. In this case, we are loading a folder named `jwr_pyr87` containing 773 image sections:
 ```python
 script_dir = os.path.abspath('') # locate the folder where the current script is being run
 sample_name = 'jwr_pyr87' # put your image folder in the script path and specify the name of the folder
@@ -165,6 +167,13 @@ for i in range(num_of_img):
 print(img_stack.shape) # read all the images exported from VAST into a single image stack
 ```
 
+- If your reconstruction file is in .h5 format, use the code below to load your image stack:
+```python
+with h5py.File('C:/Users/Lichtman Lab/Desktop/h5_data/jwr_pyr87.h5', 'r') as fl:
+    img_stack = np.array(fl['images'])
+```
+
+- Set the x,y,z resolutions for the ng viewer:
 ```python
 res = neuroglancer.CoordinateSpace(
     names=['z', 'y', 'x'],
@@ -172,21 +181,25 @@ res = neuroglancer.CoordinateSpace(
     scales=[120, 256, 128]) # set the x,y,z resolutions for neuroglacer 
 ```
 
+- Add a layer in ng viewer to show the segmentation/reconstruction:
 ```python
 def ngLayer(data, res, oo=[0,0,0], tt='segmentation'):
     return neuroglancer.LocalVolume(data, dimensions=res, volume_type=tt, voxel_offset=oo)
 ```
 
+- Configure the ng layers: (in this case, we are loading a precomputed EM volume)
 ```python
 with viewer.txn() as s:
     s.layers['em'] = neuroglancer.ImageLayer(source='precomputed://https://rhoana.rc.fas.harvard.edu/ng/jwr15-120_im')
     s.layers.append(name='seg', layer=ngLayer(img_stack.astype(np.uint8), res, tt='segmentation'))
 ```
 
+- Generate a link for your ng viewer
 ```python
 print(viewer)
 ```
 
+- Obtain the complete segment list for the segmentation layer
 ```python
 np.unique(img_stack)
 ```
