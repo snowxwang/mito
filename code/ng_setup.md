@@ -30,28 +30,30 @@ To prepare your Windows computer for ng installation, first install these applic
 
 - Install [Visual Studio](https://visualstudio.microsoft.com/downloads/) - (download the free community version)
 - Install [Anaconda](https://www.anaconda.com/products/individual)
-- Install Git (call Anaconda Prompt{.text-green-200 } or Command Prompt{.text-green-200 } in your window search option)
+- Install [Git](https://git-scm.com/download/win) (call [Anaconda Prompt](https://docs.anaconda.com/anaconda/install/verify-install/) or [Command Prompt](https://www.dell.com/support/kbdoc/en-in/000130703/the-command-prompt-what-it-is-and-how-to-use-it-on-a-dell-system) in your window search option)
 ```bash
 conda install -c anaconda git
 ```
+
 - Install [chocolatey](https://chocolatey.org/install) 
-    - Open Windows PowerShell and run as Administrator
-    - In PowerShell, run:
+    - [Open Windows PowerShell and run as Administrator](https://www.javatpoint.com/powershell-run-as-administrator)
+    - In **PowerShell**, run:
     ```bash
     Get-ExecutionPolicy
     ```
     - If it returns `Restricted`, then run `Set-ExecutionPolicy AllSigned` or `Set-ExecutionPolicy Bypass -Scope Process`.
-    - In PowerShell, run:
+    - In **PowerShell**, run:
     ```bash
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     ```
-    - Now check if choco is installed. In PowerShell, type:
+    - Now check if choco is installed. In **PowerShell**, type:
     ```bash
     choco
     ```
     - If it returns the message below, you are ready to go.
-- Install nodejs
-    - In PowerShell, run:
+
+- Install [nodejs](https://nodejs.org/en/download/)
+    - In **PowerShell**, run:
     ```bash
     choco install -y --force nodejs
     ```
@@ -65,24 +67,26 @@ conda install -c anaconda git
 ## Install Neuroglancer
 {: .text-purple-200 }
 
-To install neuroglancer and the related components, we want to first create a new enviroment (let's call it `ng_torch`) and install Pytorch for it:
+To install neuroglancer and the related components, we want to first create a new enviroment (let's call it `ng_torch`) and install [PyTorch](https://pytorch.org/) for it:
 {: .fs-5 }
 {: .fw-400 }
 
-- Open `Anaconda Prompt` or `Command Prompt`, run:
+- Open **Anaconda Prompt** or **Command Prompt**, run:
 ```bash
 conda create -n ng_torch python=3.8
 activate ng_torch
 conda install pytorch torchvision cudatoolkit=11.0 -c pytorch
 ```
-- Now check your Pytorch version (we need the version to be >1.80):
+- Now check your PyTorch version (we need the version to be >1.80):
 ```bash
 pip3 show torch
 ```
+
 - If you need to update `pip` in the virtual enviroment, run
 ```bash
 python -m pip install --user --upgrade pip
 ```
+
 - Now use `pip` to install ng and other packages you need:
 ```bash
 pip install neuroglancer
@@ -90,6 +94,7 @@ pip install jupyter  # (optional) jupyter/ipykernel installation
 pip install numpy Pillow requests tornado sockjs-tornado six google-apitools selenium imageio h5py cloud-volume
 python -m pip install -U scikit-image
 ```
+
 - Make a folder for ng:
 ```bash
 mkdir project
@@ -100,7 +105,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"    # This loads nvm
 ```
-- Install `npm`. In Anaconda Prompt, run:
+
+- Install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). In **Anaconda Prompt**, run:
 ```bash
 pip install npm
 ```
@@ -108,7 +114,8 @@ pip install npm
 ```bash
 npm i
 ```
-- Finally, in Anaconda Prompt, run:
+
+- Finally, in **Anaconda Prompt**, run:
 ```bash
 python setup.py install
 ```
@@ -120,7 +127,7 @@ npm run build-python-min
 ## Use Jupyter Notebook to set up your ng viewer
 {: .text-purple-200 }
 
-Open Anaconda, locate your ng enviroment and start a `Jupyter Notebook`:
+Open **Anaconda**, locate your ng enviroment and start a `Jupyter Notebook`:
 {: .fs-5 }
 {: .fw-400 }
 
@@ -132,12 +139,14 @@ from skimage.io import imread
 import h5py
 import os
 ```
+
 ```python
 ip = 'localhost'  # or public IP of the machine for sharable display
 port = 9999       # change to an unused port number
 neuroglancer.set_server_bind_address(bind_address=ip, bind_port=port)
 viewer=neuroglancer.Viewer()
 ```
+
 ```python
 script_dir = os.path.abspath('') # locate the folder where the current script is being run
 sample_name = 'jwr_pyr87' # put your image folder in the script path and specify the name of the folder
@@ -155,24 +164,29 @@ for i in range(num_of_img):
     i += 1   
 print(img_stack.shape) # read all the images exported from VAST into a single image stack
 ```
+
 ```python
 res = neuroglancer.CoordinateSpace(
     names=['z', 'y', 'x'],
     units=['nm', 'nm', 'nm'],
     scales=[120, 256, 128]) # set the x,y,z resolutions for neuroglacer 
 ```
+
 ```python
 def ngLayer(data, res, oo=[0,0,0], tt='segmentation'):
     return neuroglancer.LocalVolume(data, dimensions=res, volume_type=tt, voxel_offset=oo)
 ```
+
 ```python
 with viewer.txn() as s:
     s.layers['em'] = neuroglancer.ImageLayer(source='precomputed://https://rhoana.rc.fas.harvard.edu/ng/jwr15-120_im')
     s.layers.append(name='seg', layer=ngLayer(img_stack.astype(np.uint8), res, tt='segmentation'))
 ```
+
 ```python
 print(viewer)
 ```
+
 ```python
 np.unique(img_stack)
 ```
