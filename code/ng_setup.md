@@ -30,7 +30,7 @@ To prepare your Windows computer for ng installation, first install these applic
 
 - Install [Visual Studio](https://visualstudio.microsoft.com/downloads/) - (download the free community version)
 - Install [Anaconda](https://www.anaconda.com/products/individual)
-- Install Git (call Anaconda Prompt{: .text-green-200 } or Command Prompt{: .text-green-200 } in your window search option)
+- Install Git (call Anaconda Prompt {: .text-green-200 } or Command Prompt {: .text-green-200 } in your window search option)
 ```bash
 conda install -c anaconda git
 ```
