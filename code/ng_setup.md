@@ -194,12 +194,14 @@ with viewer.txn() as s:
     s.layers.append(name='seg', layer=ngLayer(img_stack.astype(np.uint8), res, tt='segmentation'))
 ```
 
-- Generate a link for your ng viewer
+- Generate a link for your ng viewer:
 ```python
 print(viewer)
 ```
 
-- Obtain the complete segment list for the segmentation layer
+- Obtain the complete segment list for the segmentation layer:
 ```python
 np.unique(img_stack)
 ```
+
+- Please feel free to download the sample Jupyter [notebook]() or Colab [notebook]() whichever is convenient for you.
