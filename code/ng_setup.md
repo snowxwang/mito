@@ -6,9 +6,11 @@ parent: visualization
 nav_order: 1
 ---
 
-# Set up Neuroglancer (ng) locally
+# Set up Neuroglancer (ng) on a Windows machine
 {: .text-purple-300 }
 {: .no_toc }
+
+Contributors: [Kelly Yin](https://github.com/Kelly-Yin) and [Snow Wang](https://github.com/snowxwang)
 
 <details open markdown="block">
   <summary>
@@ -28,7 +30,7 @@ To prepare your Windows computer for ng installation, first install these applic
 
 - Install [Visual Studio](https://visualstudio.microsoft.com/downloads/) - (download the free community version)
 - Install [Anaconda](https://www.anaconda.com/products/individual)
-- Install Git (call Anaconda Prompt or Command Prompt)
+- Install Git (call `Anaconda Prompt` or `Command Prompt` in your window search option)
 ```bash
 conda install -c anaconda git
 ```
@@ -38,35 +40,36 @@ conda install -c anaconda git
     ```bash
     Get-ExecutionPolicy
     ```
+    - If it returns `Restricted`, then run `Set-ExecutionPolicy AllSigned` or `Set-ExecutionPolicy Bypass -Scope Process`.
     - In PowerShell, run:
     ```bash
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     ```
-    - Now check if choco is installed. In PowerShell, run:
+    - Now check if choco is installed. In PowerShell, type:
     ```bash
     choco
     ```
-    - If you get the message below, you are ready to go.
+    - If it returns the message below, you are ready to go.
 - Install nodejs
     - In PowerShell, run:
     ```bash
     choco install -y --force nodejs
     ```
-    - If you get the message below, you are good to move on.
+    - If returns the message below, you are good to move on.
     - Test nodejs. In Command Prompt, run:
     ```bash
     node -v
     ```
-    - If you see the message below, you are in good to go.
+    - If it returns the message below, you are good to proceed.
 
 ## Install Neuroglancer
 {: .text-purple-200 }
 
-To install the neuroglancer and the related components, we want to first create a new enviroment (let's call it ng_torch) and install Pytorch for it:
+To install neuroglancer and the related components, we want to first create a new enviroment (let's call it `ng_torch`) and install Pytorch for it:
 {: .fs-5 }
 {: .fw-400 }
 
-- Open Anaconda Prompt or Command Prompt, run:
+- Open `Anaconda Prompt` or `Command Prompt`, run:
 ```bash
 conda create -n ng_torch python=3.8
 activate ng_torch
@@ -76,11 +79,11 @@ conda install pytorch torchvision cudatoolkit=11.0 -c pytorch
 ```bash
 pip3 show torch
 ```
-- If you need to update pip in the virtual enviroment, run
+- If you need to update `pip` in the virtual enviroment, run
 ```bash
 python -m pip install --user --upgrade pip
 ```
-- Now use pip to install ng and other packages you need:
+- Now use `pip` to install ng and other packages you need:
 ```bash
 pip install neuroglancer
 pip install jupyter  # (optional) jupyter/ipykernel installation
@@ -97,7 +100,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"    # This loads nvm
 ```
-- Install npm. In Anaconda Prompt, run:
+- Install `npm`. In Anaconda Prompt, run:
 ```bash
 pip install npm
 ```
@@ -117,11 +120,11 @@ npm run build-python-min
 ## Use Jupyter Notebook to set up your ng viewer
 {: .text-purple-200 }
 
-Open Anaconda, locate your ng enviroment and start a Jupyter Notebook:
+Open Anaconda, locate your ng enviroment and start a `Jupyter Notebook`:
 {: .fs-5 }
 {: .fw-400 }
 
-- Open Anaconda Prompt or Command Prompt, run the code in sequence:
+- In the notebook, run the code in sequence:
 ```python
 import neuroglancer
 import numpy as np
