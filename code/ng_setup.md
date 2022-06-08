@@ -6,7 +6,7 @@ parent: visualization
 nav_order: 1
 ---
 
-# Set up Neuroglancer (ng) on a Windows machine
+# Set up Neuroglancer (ng) on a Windows PC
 {: .text-purple-300 }
 {: .no_toc }
 
